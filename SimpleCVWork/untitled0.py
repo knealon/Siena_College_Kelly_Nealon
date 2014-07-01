@@ -8,7 +8,7 @@ Created on Thu Jun 05 13:01:59 2014
 from SimpleCV import Camera, VideoStream
 import time
 
-cam=Camera(1)
+cam=Camera()
 #display=Display()
 while(1):
     img=cam.getImage()
