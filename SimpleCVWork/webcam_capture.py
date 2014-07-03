@@ -14,7 +14,7 @@ from subprocess import call
 
 
 def main(cameraNumber, camWidth, camHeight, outputFile):
-    BUFFER_NAME = 'cloud3.avi'
+    BUFFER_NAME = 'cloud.avi'
 
     # create the video stream for saving the video file
     #vs = VideoStream(fps=24, filename=fname, framefill=True)
