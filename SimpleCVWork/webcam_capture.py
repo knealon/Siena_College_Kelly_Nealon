@@ -13,8 +13,9 @@ import getopt
 from subprocess import call
 
 
+
 def main(cameraNumber, camWidth, camHeight, outputFile):
-    BUFFER_NAME = 'cloud.avi'
+    BUFFER_NAME = 'Trial3.avi'
 
     # create the video stream for saving the video file
     #vs = VideoStream(fps=24, filename=fname, framefill=True)
@@ -25,10 +26,12 @@ def main(cameraNumber, camWidth, camHeight, outputFile):
 
     # Initialize Camera
     cam = Camera(cameraNumber, prop_set={"width": camWidth, "height": camHeight})
-
+    time_start=time.time()
     # while the user does not press 'esc'
-    while disp.isNotDone():
+    while time.time()-time_start<10:
+    # Finally let's starte
         # KISS: just get the image... don't get fancy
+    
         img = cam.getImage()
 
         #img.show()
@@ -96,9 +99,9 @@ if __name__ == '__main__':
             camNR = arg
         elif opt in ("-o", "--output"):
             outname = arg
-
-    # Finally let's start
+    
     main(camNR, width, height, outname)
+   
 
 
 
