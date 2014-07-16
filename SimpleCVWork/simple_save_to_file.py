@@ -1,5 +1,6 @@
 # Import the parts we need from SimpleCV
 from SimpleCV import Camera, VideoStream, Display
+import skimage
 
 # This import is just to create the video (if you want to do something meanwhile)
 #from multiprocessing import Proce
@@ -19,6 +20,7 @@ def main(cameraNumber, camWidth, camHeight, outputFile):
 
     BUFFER_NAME = 'cloud3.avi'
     vs = VideoStream(fps=24, filename=BUFFER_NAME, framefill=True)
+
     disp = Display((camWidth, camHeight))
     cam = Camera(cameraNumber, prop_set={"width": camWidth, "height": camHeight})
 
@@ -28,6 +30,9 @@ def main(cameraNumber, camWidth, camHeight, outputFile):
     while disp.isNotDone():
         # KISS: just get the image... don't get fancy
         img = cam.getImage()
+        print type(img)
+
+        skimage.io.push(img)
 
         #img.show()
 
