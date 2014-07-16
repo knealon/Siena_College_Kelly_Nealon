@@ -5,7 +5,7 @@ import skimage
 # This import is just to create the video (if you want to do something meanwhile)
 #from multiprocessing import Proce
 # To give the correct name to the output file
-import time
+#import time
 
 # Imports to treat command line arguments 
 import sys
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         '''
 
 
-    camNR = 0
+    camNR = 1
     width = 640
     height = 480
     outname = 'output_{0}.mp4'.format(ctime().replace(" ", "_"))     
