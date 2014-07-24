@@ -12,24 +12,35 @@ from sys import argv
 import getopt
 from subprocess import call
 
+FRAMES_PER_SECOND = 24
+SECONDS_TO_RECORD = 10
 
 
-def main(cameraNumber, outputFile):
-    BUFFER_NAME = 'ipython1.avi'
+
+def main(cameraNumber, camWidth, camHeight, outputFile):
+    BUFFER_NAME = 'Trial3.avi'
+
+    images = []
+    icount = 0
+    img = None
 
     # create the video stream for saving the video file
-    #vs = VideoStream(fps=24, filename=fname, framefill=True)
-    #vs = VideoStream(fps=24, filename=BUFFER_NAME, framefill=True)
-    vs=VideoStream(filename=BUFFER_NAME)
+    #vs = VideoStream(fps=FRAMES_PER_SECOND, filename=fname, framefill=True)
+    #vs = VideoStream(fps=FRAMES_PER_SECOND, filename=BUFFER_NAME, framefill=True)
+
+    # Do this for the buffer?
+    # USING fps=240/3=80 which is what I see on my computer.
+    vs = VideoStream(fps=80, filename=BUFFER_NAME, framefill=False)
+
     # create a display with size (width, height)
-    disp = Display()
+    disp = Display((camWidth, camHeight))
 
     # Initialize Camera
-    cam = Camera(cameraNumber)
+    cam = Camera(cameraNumber, prop_set={"width": camWidth, "height": camHeight})
     time_start=time.time()
     # while the user does not press 'esc'
-    while time.time()-time_start<10:
-    # Finally let's starte
+    while time.time()-time_start<SECONDS_TO_RECORD:
+    # Finally let's started
         # KISS: just get the image... don't get fancy
     
         img = cam.getImage()
@@ -37,14 +48,35 @@ def main(cameraNumber, outputFile):
         #img.show()
 
         # write the frame to videostream
-        vs.writeFrame(img)
+        #vs.writeFrame(img)
 
         # show the image on the display
         img.save(disp)
 
+        #'''
+        #if icount<FRAMES_PER_SECOND*SECONDS_TO_RECORD:
+        #if 1:
+        if icount<200:
+            #print icount
+            images.append(img.copy())
+        else:
+            #print icount
+            images[icount%200] = img.copy()
+        #'''
+
+        icount += 1
+
     # Finished the acquisition of images now Transform into a film
-    #self.makefilmProcess = Process(target=self.saveFilmToDisk, args=(BUFFER_NAME, outputFile))
-    #self.makefilmProcess.start()
+    # Pulling the images out of our list and putting them into the BUFFER
+    #'''
+    print "Processing the images."
+    print len(images)
+    for i in images:
+        #print i
+        #i.save(disp)
+        vs.writeFrame(i)
+    #'''
+
     saveFilmToDisk(BUFFER_NAME, outputFile)
 
 
@@ -75,15 +107,9 @@ if __name__ == '__main__':
         '''
 
 
-<<<<<<< HEAD
-    camNR = 1
-    #width = 640
-    #height = 480
-=======
     camNR = 0
     width = 640
     height = 480
->>>>>>> origin/master
     outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))     
 
     try:
@@ -106,7 +132,7 @@ if __name__ == '__main__':
         elif opt in ("-o", "--output"):
             outname = arg
     
-    main(camNR, outname)
+    main(camNR, width, height, outname)
    
 
 
