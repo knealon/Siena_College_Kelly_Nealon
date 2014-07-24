@@ -14,18 +14,18 @@ from subprocess import call
 
 
 
-def main(cameraNumber, camWidth, camHeight, outputFile):
-    BUFFER_NAME = 'Trial3.avi'
+def main(cameraNumber, outputFile):
+    BUFFER_NAME = 'ipython1.avi'
 
     # create the video stream for saving the video file
     #vs = VideoStream(fps=24, filename=fname, framefill=True)
-    vs = VideoStream(fps=24, filename=BUFFER_NAME, framefill=True)
-
+    #vs = VideoStream(fps=24, filename=BUFFER_NAME, framefill=True)
+    vs=VideoStream(filename=BUFFER_NAME)
     # create a display with size (width, height)
-    disp = Display((camWidth, camHeight))
+    disp = Display()
 
     # Initialize Camera
-    cam = Camera(cameraNumber, prop_set={"width": camWidth, "height": camHeight})
+    cam = Camera(cameraNumber)
     time_start=time.time()
     # while the user does not press 'esc'
     while time.time()-time_start<10:
@@ -76,8 +76,8 @@ if __name__ == '__main__':
 
 
     camNR = 1
-    width = 640
-    height = 480
+    #width = 640
+    #height = 480
     outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))     
 
     try:
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         elif opt in ("-o", "--output"):
             outname = arg
     
-    main(camNR, width, height, outname)
+    main(camNR, outname)
    
 
 

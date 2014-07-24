@@ -21,12 +21,12 @@ while not disp.isDone():
     count=0
     for m in motion:
         m.draw(color=Color.WHITE,normalize=False)
-        outputFile="radiation_%d.jpg" %(count)
+        outputFile="test_%d.jpg" %(count)
         current.save(outputFile)
         print "Saving %s" % (outputFile)
         count+=1
-        sleep(1)
-        if count>=8:
+        sleep(2)
+        if count>=4:
             exit(0)
            
         
