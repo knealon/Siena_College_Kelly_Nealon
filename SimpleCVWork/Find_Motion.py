@@ -18,9 +18,9 @@ disp= Display(previous.size())
 while not disp.isDone():
     current=cam.getImage()
     #motion=current.findMotion(previous,method='BM') # Robust but slow.
-    #motion=current.findMotion(previous,method='LK')
+    motion=current.findMotion(previous,method='LK')
     # We should learn about the ``window" kwarg.
-    motion=current.findMotion(previous,method='HS',window=11)
+    #motion=current.findMotion(previous,method='HS',window=11)
     #motion=current.findMotion(previous,method='HS',window=4)
     #motion.draw()
     #print motion

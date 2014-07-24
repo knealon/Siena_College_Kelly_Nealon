@@ -9,7 +9,7 @@ from SimpleCV import Camera, Color, Display
 from sys import exit
 from time import sleep
 
-cam= Camera(1)
+cam= Camera(0)
 previous=cam.getImage()
 
 
@@ -17,10 +17,13 @@ disp= Display(previous.size())
 
 while not disp.isDone():
     current=cam.getImage()
-    motion=current.findMotion(previous)
+    motion=current.findMotion(previous,method="HS")
     count=0
     for m in motion:
         m.draw(color=Color.WHITE,normalize=False)
+        print m
+        print m.points
+        print m.dx,m.dy
         outputFile="radiation_%d.jpg" %(count)
         current.save(outputFile)
         print "Saving %s" % (outputFile)
