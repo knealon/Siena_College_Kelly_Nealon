@@ -120,7 +120,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 ################################################################################
 def main():
 
-    camera_number = 0
+    camera_number =2
     record_data(camera_number=camera_number)
 
 ################################################################################
