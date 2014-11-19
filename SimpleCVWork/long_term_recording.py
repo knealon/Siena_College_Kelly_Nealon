@@ -18,9 +18,9 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 
     cap = cv2.VideoCapture(camera_number)
 
-    #fourcc = cv2.cv.CV_FOURCC(*'XVID')
-    #out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
-    fourcc = cv2.cv.CV_FOURCC('m','p','4','v')
+    fourcc = cv2.cv.CV_FOURCC(*'XVID')
+    out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
+    #fourcc = cv2.cv.CV_FOURCC('m','p','4','v')
     #out = cv2.VideoWriter('output.mov',fourcc,20.0,(640,480))
 
     ret,prev = cap.read()
@@ -67,11 +67,11 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
                 #write_out_event(images)
                 trigger_event = False
                 print "WRITING EVENT"
-                #buffer_name = "temp_output.avi"
-                buffer_name = "temp_output.mov"
+                buffer_name = "temp_output.avi"
+                #buffer_name = "temp_output.mov"
                 outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))
-                #out = cv2.VideoWriter(buffer_name,fourcc,20.0,(640,480))
-                out = cv2.VideoWriter(buffer_name,fourcc,20.0,(1280,720))
+                out = cv2.VideoWriter(buffer_name,fourcc,20.0,(640,480))
+                #out = cv2.VideoWriter(buffer_name,fourcc,20.0,(1280,720))
                 '''
                 for image in images:
                     #print type(image)
@@ -125,7 +125,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 ################################################################################
 def main():
 
-    camera_number =1
+    camera_number = 0
     record_data(camera_number=camera_number)
 
 ################################################################################
