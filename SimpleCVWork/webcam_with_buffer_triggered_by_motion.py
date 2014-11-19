@@ -142,7 +142,7 @@ if __name__ == '__main__':
         '''
 
 
-    camNR = 0
+    camNR = 1
     width = 640
     height = 480
     outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))     
