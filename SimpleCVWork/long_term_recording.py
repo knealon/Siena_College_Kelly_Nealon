@@ -19,7 +19,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
     cap = cv2.VideoCapture(camera_number)
 
     fourcc = cv2.cv.CV_FOURCC(*'XVID')
-    out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
+    #out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
     #fourcc = cv2.cv.CV_FOURCC('m','p','4','v')
     #out = cv2.VideoWriter('output.mov',fourcc,20.0,(640,480))
 
@@ -38,6 +38,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 
     while (cap.isOpened()):
         ret,img = cap.read()
+        print len(img), len(img[0])
 
         if ret==True:
 
