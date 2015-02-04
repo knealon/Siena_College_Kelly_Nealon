@@ -75,15 +75,9 @@ if __name__ == '__main__':
         '''
 
 
-<<<<<<< HEAD
     camNR = 1
     #width = 640
     #height = 480
-=======
-    camNR = 0
-    width = 640
-    height = 480
->>>>>>> origin/master
     outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))     
 
     try:

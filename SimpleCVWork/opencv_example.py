@@ -4,12 +4,18 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
+print cap
+
 fourcc = cv2.cv.CV_FOURCC(*'XVID')
 out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
 
 ret,prev = cap.read()
+print ret
+print prev
 while (cap.isOpened()):
     ret,frame = cap.read()
+
+    print ret
 
     if ret==True:
 
@@ -30,6 +36,6 @@ while (cap.isOpened()):
 
 cap.release()
 #out.release()
-cv2.destroyAllWindows()
+#cv2.destroyAllWindows()
 
 
