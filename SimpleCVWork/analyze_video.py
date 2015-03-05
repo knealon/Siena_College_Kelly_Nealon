@@ -45,7 +45,7 @@ while(cap.isOpened()):
 
     print icount,mean#,s
 
-    if abs(mean)<0.05:
+    if mean<0.05:
         print "TRIGGER -------------------"
         #cv2.imshow('diff',img)
 
