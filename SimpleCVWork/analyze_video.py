@@ -39,8 +39,8 @@ while(cap.isOpened()):
     mean = diff.mean()
     #s = sum(sum(sum(diff)))
 
-    #cv2.imshow('img',img)
-    cv2.imshow('img',img[200:600:1,200:800:1])
+    cv2.imshow('img',img)
+    #cv2.imshow('img',img[200:600:1,200:800:1])
     #cv2.imshow('diff',diff)
 
     print icount,mean#,s
