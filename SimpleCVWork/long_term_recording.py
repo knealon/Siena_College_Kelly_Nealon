@@ -18,9 +18,9 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 
     cap = cv2.VideoCapture(camera_number)
 
-    fourcc = cv2.cv.CV_FOURCC(*'XVID')
-    out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
-    #fourcc = cv2.cv.CV_FOURCC('m','p','4','v')
+    #fourcc = cv2.cv.CV_FOURCC(*'XVID')
+    #out = cv2.VideoWriter('output.avi',fourcc,20.0,(640,480))
+    fourcc = cv2.cv.CV_FOURCC('m','p','g','4')
     #out = cv2.VideoWriter('output.mov',fourcc,20.0,(640,480))
 
     ret,prev = cap.read()
@@ -38,6 +38,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
 
     while (cap.isOpened()):
         ret,img = cap.read()
+        #print len(img), len(img[0])
 
         if ret==True:
 
@@ -67,10 +68,10 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
                 #write_out_event(images)
                 trigger_event = False
                 print "WRITING EVENT"
-                buffer_name = "temp_output.avi"
+                buffer_name = "temp_output.mpg"
                 #buffer_name = "temp_output.mov"
                 outname = 'output_{0}.mp4'.format(time.ctime().replace(" ", "_"))
-                out = cv2.VideoWriter(buffer_name,fourcc,20.0,(640,480))
+                out = cv2.VideoWriter(buffer_name,fourcc,20.0,(1280,720))
                 #out = cv2.VideoWriter(buffer_name,fourcc,20.0,(1280,720))
                 '''
                 for image in images:
@@ -89,10 +90,13 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
                     if i>=nimages:
                         myindex = i-nimages
                     out.write(images[myindex])
+                    #print "My index %d" %(myindex)
                     
                     #vs.writeFrame(images[myindex])
+                    
 
 
+                    exit()                
                 params = " -i {0} -c:v mpeg4 -b:v 700k -r 24 {1}".format(buffer_name, outname)
                 # run avconv to compress the video since ffmpeg is deprecated (going to be).
                 call('avconv'+params, shell=True)
@@ -103,7 +107,7 @@ def record_data(camera_number=0,fps=24,seconds_before_trigger=3,seconds_after_tr
                 images = []
                 start_of_images = 0
 
-                #exit()
+                exit()
 
             #out.write(img)
 
