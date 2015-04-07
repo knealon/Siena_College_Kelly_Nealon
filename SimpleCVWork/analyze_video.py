@@ -4,7 +4,7 @@ import time
 from collections import deque
 
 #cap = cv2.VideoCapture('jellyfish_video.mp4')
-cap = cv2.VideoCapture('cosmicrays.mp4')
+cap = cv2.VideoCapture('')
 w=int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_WIDTH ))
 h=int(cap.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT ))
 print w,h
